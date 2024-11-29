@@ -1,0 +1,120 @@
+/* ====== reused style ====== */
+.frame {
+  width: 100%;
+  background-color: #ffffff;
+  border: 3px solid #000000;
+  border-radius: 6px;
+}
+
+/* ====== video ====== */
+.bg-video {
+  position: absolute;
+  z-index: -2;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.video {height: 100vh;}
+
+.bg-video::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 1) 100%);
+}
+
+/* ====== container main ====== */
+.container {
+  position: relative;
+  z-index: 3;
+  height: 100vh;
+  display: flex;
+}
+
+/* ====== container left ====== */
+.container__left {
+  width: 35%;
+  min-width: 18.75rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.score-box {padding: 1.875rem;}
+
+.card-details {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 6rem;
+}
+
+#card-name {font-size: 0.8rem;}
+
+#card-type {font-size: 1rem;}
+
+/* ====== container right ====== */
+.container__right {width: 65%;}
+
+.card-box__container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.card-versus__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  /* margin-top: 2rem; */
+}
+
+.card-box {
+  width: 100%;
+  height: 9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.versus-top,
+.versus-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.versus-bottom {margin-top: 1rem;}
+
+.versus-bottom #next-duel {display: none;}
+
+.card-infield {
+  width: 8rem;
+  height: 11.2rem;
+}
+
+/* ====== media queries ====== */
+@media screen and (max-width: 767px) {
+  /* ====== container main ====== */
+  .container {flex-direction: column;}
+
+  /* ====== container left ====== */
+  .container__left {width: 100%;}
+
+  /* ====== container right ====== */
+  .container__right {width: 100%;}
+}
