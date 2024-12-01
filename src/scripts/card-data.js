@@ -12,7 +12,7 @@ const cardData = [
     id: 1,
     name: "Dark Macigian",
     type: "Rock",
-    image: `${pathImages}macigian.png`,
+    image: `${pathImages}magician.png`,
     WinOf: [2],
     LoseOf: [0]
   },
