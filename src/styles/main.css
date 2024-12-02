@@ -1,3 +1,13 @@
+/* ====== config ====== */
+body {cursor: url('/src/assets/cursor/yugicursor.png'), default;}
+
+a,
+img,
+button,
+a:hover,
+img:hover,
+button:hover {cursor: url('/src/assets/cursor/yamiyugicursorGLOW.png'), auto;}
+
 /* ====== reused style ====== */
 .frame {
   width: 100%;
