@@ -9,16 +9,17 @@ const state = {
     name: document.getElementById('card-name'),
     type:document.getElementById('card-type')
   },
+  playerSides: {
+    player1: "player-cards",
+    player1BOX: document.querySelector('#player-cards'),
+    computer: "computer-cards",
+    computerBOX: document.querySelector('#computer-cards')
+  },
   fieldCards: {
     player: document.getElementById('player-field-card'),
     computer: document.getElementById('computer-field-card')
   },
   button: document.getElementById('next-duel')
-}
-
-const playerSides = {
-  player1: "player-cards",
-  computer: "computer-cards"
 }
 
 async function getRandomIdCard() {
@@ -34,14 +35,38 @@ async function createCardImage(idCard, fieldSide) {
   cardImage.setAttribute('data-id', idCard);
   cardImage.classList.add('card');
 
-  if (fieldSide === playerSides.player1) {
+  if (fieldSide === state.playerSides.player1) {
     cardImage.addEventListener('mouseover', () => {
-      console.log('card');
       drawSelectCard(idCard);
+    });
+
+    cardImage.addEventListener('click', () => {
+      setCardsField(cardImage.getAttribute('data-id'));
     });
   }
 
   return cardImage;
+}
+
+async function setCardsField(idCard) {
+  await removeAllCardsImages();
+
+  let computerIdCard = await getRandomIdCard();
+
+  state.fieldCards.player.style.display = 'block';
+  state.fieldCards.computer.style.display = 'block';
+
+  state.fieldCards.player.src = cardData[idCard].image;
+  state.fieldCards.computer.src = cardData[computerIdCard].image;
+}
+
+async function removeAllCardsImages() {
+  let {computerBOX, player1BOX} = state.playerSides;
+  let imageElements = computerBOX.querySelectorAll('img');
+  imageElements.forEach((image) => image.remove());
+
+  imageElements = player1BOX.querySelectorAll('img');
+  imageElements.forEach((image) => image.remove());
 }
 
 async function drawSelectCard(index) {
@@ -60,8 +85,8 @@ async function drawCards(cardNumbers, fieldSide) {
 }
 
 function init() {
-  drawCards(5, playerSides.player1);
-  drawCards(5, playerSides.computer);
+  drawCards(5, state.playerSides.player1);
+  drawCards(5, state.playerSides.computer);
 }
 
 init();
