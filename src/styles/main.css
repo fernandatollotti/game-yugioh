@@ -131,6 +131,10 @@ button:hover {cursor: url('/src/assets/cursor/yamiyugicursorGLOW.png'), auto;}
   /* ====== container left ====== */
   .container__left {width: 100%;}
 
+  .score-box {padding: 0.875rem;}
+
   /* ====== container right ====== */
   .container__right {width: 100%;}
+
+  .card {height: 90%;}
 }
