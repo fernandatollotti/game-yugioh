@@ -88,6 +88,8 @@ async function checkDuelResults(playerCardId, computerCardId) {
     state.score.computerScore++;
   }
 
+  await playAudio(duelResults);
+
   return duelResults;
 }
 
@@ -123,6 +125,17 @@ async function resetDuel() {
   state.fieldCards.computer.style.display = 'none';
 
   init();
+}
+
+async function playAudio(status) {
+  const pathAudio = 'src/assets/audios/';
+  const audio = new Audio(`${pathAudio}${status}.wav`);
+  
+  try {
+    audio.play();
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function init() {
