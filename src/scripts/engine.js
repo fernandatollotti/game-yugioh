@@ -34,7 +34,20 @@ async function createCardImage(idCard, fieldSide) {
   cardImage.setAttribute('data-id', idCard);
   cardImage.classList.add('card');
 
+  if (fieldSide === playerSides.player1) {
+    cardImage.addEventListener('mouseover', () => {
+      console.log('card');
+      drawSelectCard(idCard);
+    });
+  }
+
   return cardImage;
+}
+
+async function drawSelectCard(index) {
+  state.cardSprites.avatar.src = cardData[index].image;
+  state.cardSprites.name.innerText = cardData[index].name;
+  state.cardSprites.type.innerText = "Attribute: " + cardData[index].type;
 }
 
 async function drawCards(cardNumbers, fieldSide) {
