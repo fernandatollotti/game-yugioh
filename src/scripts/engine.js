@@ -148,19 +148,22 @@ async function playAudio(status) {
   const audio = new Audio(`${pathAudio}${status}.wav`);
   
   try {
-    audio.play();
+    await audio.play();
   } catch (error) {
     console.error(error);
   }
+}
+
+function playBackgroundAudio() {
+  const bgMusic = document.getElementById('bg-music');
+  bgMusic.play();
 }
 
 function init() {
   showHiddenCardFieldsImages(false)
   drawCards(5, state.playerSides.player1);
   drawCards(5, state.playerSides.computer);
-
-  const bgMusic = document.getElementById('bg-music');
-  bgMusic.play();
 }
 
+playBackgroundAudio();
 init();
