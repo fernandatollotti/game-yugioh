@@ -51,13 +51,44 @@ async function createCardImage(idCard, fieldSide) {
 async function setCardsField(idCard) {
   await removeAllCardsImages();
 
-  let computerIdCard = await getRandomIdCard();
+  let computerCardId = await getRandomIdCard();
 
   state.fieldCards.player.style.display = 'block';
   state.fieldCards.computer.style.display = 'block';
 
   state.fieldCards.player.src = cardData[idCard].image;
-  state.fieldCards.computer.src = cardData[computerIdCard].image;
+  state.fieldCards.computer.src = cardData[computerCardId].image;
+
+  let duelResults = await checkDuelResults(idCard, computerCardId);
+
+  await updateScore();
+  await drawButton(duelResults);
+}
+
+async function drawButton(text) {
+  state.button.innerText = text;
+  state.button.style.display = 'block';
+}
+
+async function updateScore() {
+  state.score.scoreBox.innerText = `Win: ${state.score.playerScore} | Lose: ${state.score.computerScore}`;
+}
+
+async function checkDuelResults(playerCardId, computerCardId) {
+  let duelResults = 'Tie';
+  let playerCard = cardData[playerCardId];
+
+  if (playerCard.WinOf.includes(computerCardId)) {
+    duelResults = 'Win';
+    state.score.playerScore++;
+  }
+
+  if (playerCard.LoseOf.includes(computerCardId)) {
+    duelResults = 'Lose';
+    state.score.computerScore++;
+  }
+
+  return duelResults;
 }
 
 async function removeAllCardsImages() {
